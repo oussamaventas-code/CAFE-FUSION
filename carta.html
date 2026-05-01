@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+  <title>Carta — Fusión Café Bar</title>
+  <meta name="description" content="Carta completa de Fusión Café Bar. Cachapas, cócteles, cafés de especialidad, postres y más. Molina de Segura, Murcia."/>
+  <link rel="canonical" href="https://fusioncafebar.es/carta"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --linen:  #eae0ca;
+      --light:  #f5eedf;
+      --white:  #fdfaf4;
+      --bark:   #2c1405;
+      --bark2:  #4a2a10;
+      --moss:   #1e4d1a;
+      --terra:  #b85c3a;
+      --warm:   #d4821a;
+      --muted:  rgba(44,20,5,.45);
+      --r: cubic-bezier(.25,.46,.45,.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--linen);
+      color: var(--bark);
+      min-height: 100dvh;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HEADER ─────────────────────────────────── */
+    .header {
+      background: var(--bark);
+      padding: 1.6rem 1.5rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .logo-icon {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--linen);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .logo-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: .8rem;
+      font-style: italic;
+      color: var(--terra);
+      letter-spacing: .1em;
+      margin-top: .15rem;
+    }
+
+    .header-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 300;
+      color: rgba(234,224,202,.55);
+      letter-spacing: .08em;
+      text-align: center;
+    }
+
+    /* ── TAB NAV ─────────────────────────────────── */
+    .tabs-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bark2);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .tabs-wrap::-webkit-scrollbar { display: none; }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      min-width: max-content;
+      padding: 0 .5rem;
+    }
+
+    .tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .18rem;
+      padding: .65rem .9rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(234,224,202,.5);
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tab-btn .tab-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      color: var(--terra);
+      border-bottom-color: var(--terra);
+    }
+
+    /* ── MAIN CONTENT ─────────────────────────────── */
+    .main {
+      padding: 0 0 5rem;
+    }
+
+    /* ── SECTION ──────────────────────────────────── */
+    .section {
+      padding: 2rem 1.2rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: .8rem;
+      border-bottom: 2px solid rgba(44,20,5,.12);
+    }
+
+    .section-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--bark);
+    }
+
+    .section-badge {
+      margin-left: auto;
+      background: var(--terra);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 100px;
+    }
+
+    /* ── ITEM CARD ────────────────────────────────── */
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: .9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .8rem;
+      box-shadow: 0 1px 4px rgba(44,20,5,.07);
+      transition: transform .15s var(--r), box-shadow .15s;
+    }
+
+    .item:active {
+      transform: scale(.985);
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-name {
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--moss);
+      line-height: 1.3;
+      margin-bottom: .15rem;
+    }
+
+    .item-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .item-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm);
+      flex-shrink: 0;
+      letter-spacing: .02em;
+    }
+
+    /* ── CACHAPAS ESTRELLA ────────────────────────── */
+    .section--star .section-header {
+      border-bottom-color: var(--terra);
+    }
+
+    .section--star .item {
+      background: linear-gradient(135deg, var(--white) 0%, #fff8f0 100%);
+      border: 1px solid rgba(184,92,58,.15);
+    }
+
+    .section--star .item-name {
+      color: var(--bark2);
+    }
+
+    .section--star .item-price {
+      color: var(--terra);
+    }
+
+    /* ── DIVIDER ──────────────────────────────────── */
+    .section-gap {
+      height: 1rem;
+    }
+
+    /* ── NOTA AREPAS ──────────────────────────────── */
+    .nota {
+      margin: 1.5rem 1.2rem 0;
+      background: rgba(30,77,26,.08);
+      border: 1px dashed rgba(30,77,26,.3);
+      border-radius: 10px;
+      padding: .9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+    }
+
+    .nota-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      line-height: 1.3;
+    }
+
+    .nota-text {
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--moss);
+      line-height: 1.55;
+    }
+
+    /* ── FOOTER CTA ───────────────────────────────── */
+    .footer {
+      margin-top: 2.5rem;
+      background: var(--bark);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--linen);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .footer-wa {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      background: #25D366;
+      color: white;
+      font-family: 'Oswald', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      box-shadow: 0 4px 16px rgba(37,211,102,.35);
+    }
+
+    .footer-wa svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .footer-address {
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      color: rgba(234,224,202,.45);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── SCROLL TO TOP ────────────────────────────── */
+    .scroll-top {
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      width: 42px;
+      height: 42px;
+      background: var(--terra);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(184,92,58,.45);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .25s, transform .25s;
+      -webkit-tap-highlight-color: transparent;
+      z-index: 200;
+    }
+    .scroll-top.show { opacity: 1; transform: translateY(0); }
+
+    /* ── TABLET+ ──────────────────────────────────── */
+    @media (min-width: 600px) {
+      .header { padding: 2rem 2rem 1.5rem; }
+
+      .section { padding: 2.5rem 2rem 0; }
+
+      .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .7rem;
+      }
+
+      .nota { margin: 1.5rem 2rem 0; }
+
+      .footer { padding: 2.5rem 2rem; }
+
+      .tab-btn { padding: .7rem 1.2rem; font-size: .65rem; }
+    }
+
+    @media (min-width: 960px) {
+      .section { padding: 3rem 3rem 0; max-width: 860px; margin: 0 auto; }
+      .tabs { justify-content: center; min-width: unset; }
+      .nota { max-width: 860px; margin: 1.5rem auto 0; }
+      .items { grid-template-columns: 1fr 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <!-- SVG Logo inline -->
+      <svg class="logo-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Fusión Café Bar">
+        <circle cx="60" cy="60" r="58" fill="#b85c3a"/>
+        <circle cx="60" cy="60" r="58" fill="none" stroke="#3d1e0a" stroke-width="5"/>
+        <!-- Tallo -->
+        <line x1="60" y1="88" x2="60" y2="52" stroke="#1e4d1a" stroke-width="5" stroke-linecap="round"/>
+        <!-- Hoja izq baja -->
+        <ellipse cx="45" cy="76" rx="13" ry="6" fill="#1e4d1a" transform="rotate(-30 45 76)"/>
+        <!-- Hoja der baja -->
+        <ellipse cx="75" cy="76" rx="13" ry="6" fill="#1e4d1a" transform="rotate(30 75 76)"/>
+        <!-- Hoja izq media -->
+        <ellipse cx="42" cy="64" rx="13" ry="5.5" fill="#2d6a27" transform="rotate(-45 42 64)"/>
+        <!-- Hoja der media -->
+        <ellipse cx="78" cy="64" rx="13" ry="5.5" fill="#2d6a27" transform="rotate(45 78 64)"/>
+        <!-- Hoja top -->
+        <ellipse cx="60" cy="50" rx="7" ry="15" fill="#1e4d1a" transform="rotate(0 60 50)"/>
+        <!-- Texto FUSION -->
+        <text x="60" y="104" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="13" font-weight="900" fill="#2c1405" letter-spacing="2">FUSION</text>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">Fusión</span>
+        <span class="logo-sub">café bar</span>
+      </div>
+    </div>
+    <p class="header-tagline">C. Infanta Elena, 1 &nbsp;·&nbsp; Molina de Segura &nbsp;·&nbsp; Murcia</p>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs-wrap" aria-label="Categorías de carta">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" onclick="scrollTo('cafes')" aria-selected="true">
+        <span class="tab-icon">☕</span>Cafés
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('cervezas')">
+        <span class="tab-icon">🍺</span>Bebidas
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('frescas')">
+        <span class="tab-icon">🥤</span>Frescas
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('cocteles')">
+        <span class="tab-icon">🍸</span>Cócteles
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('cachapas')">
+        <span class="tab-icon">🫓</span>Cachapas
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('quesadillas')">
+        <span class="tab-icon">🌮</span>Quesadillas
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('aperitivos')">
+        <span class="tab-icon">🍟</span>Aperitivos
+      </button>
+      <button class="tab-btn" role="tab" onclick="scrollTo('postres')">
+        <span class="tab-icon">🍮</span>Postres
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ☕ Cafés -->
+    <section class="section" id="cafes">
+      <div class="section-header">
+        <span class="section-icon">☕</span>
+        <h2 class="section-title">Cafés e Infusiones</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Café con Leche</p>
+            <p class="item-desc">Tradicional</p>
+          </div>
+          <span class="item-price">1,80 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Asiático</p>
+            <p class="item-desc">Especialidad local</p>
+          </div>
+          <span class="item-price">3,50 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Capuchino</p>
+            <p class="item-desc">Con espuma de leche</p>
+          </div>
+          <span class="item-price">2,50 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Infusiones Especiales</p>
+            <p class="item-desc">Selección de la casa</p>
+          </div>
+          <span class="item-price">2,40 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🍺 Cervezas -->
+    <section class="section" id="cervezas">
+      <div class="section-header">
+        <span class="section-icon">🍺</span>
+        <h2 class="section-title">Cervezas y Refrescos</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Cerveza de Grifo</p>
+            <p class="item-desc">Fresca de barril</p>
+          </div>
+          <span class="item-price">2,20 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Tercio Heineken</p>
+            <p class="item-desc">Botellín 33 cl</p>
+          </div>
+          <span class="item-price">3,00 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Refrescos</p>
+            <p class="item-desc">Coca-Cola, Fanta, Aquarius</p>
+          </div>
+          <span class="item-price">2,50 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Zumo de Naranja</p>
+            <p class="item-desc">Recién exprimido</p>
+          </div>
+          <span class="item-price">2,20 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🥤 Bebidas Frescas -->
+    <section class="section" id="frescas">
+      <div class="section-header">
+        <span class="section-icon">🥤</span>
+        <h2 class="section-title">Bebidas Frescas</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Smoothie Tropical</p>
+            <p class="item-desc">Piña, papaya, fresa, kiwi</p>
+          </div>
+          <span class="item-price">5,50 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Frappé de Caramelo</p>
+            <p class="item-desc">Café, caramelo, crema</p>
+          </div>
+          <span class="item-price">5,90 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Papelón con Limón</p>
+            <p class="item-desc">Azúcar de caña y limón</p>
+          </div>
+          <span class="item-price">3,00 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Capuchino Frío</p>
+            <p class="item-desc">Café de especialidad</p>
+          </div>
+          <span class="item-price">2,50 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🍸 Cócteles -->
+    <section class="section" id="cocteles">
+      <div class="section-header">
+        <span class="section-icon">🍸</span>
+        <h2 class="section-title">Cócteles</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Mojito</p>
+            <p class="item-desc">Ron blanco, lima, menta, soda</p>
+          </div>
+          <span class="item-price">7,00 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Piña Colada</p>
+            <p class="item-desc">Ron, piña, coco</p>
+          </div>
+          <span class="item-price">4,00 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Margarita</p>
+            <p class="item-desc">Tequila, Triple Sec, lima</p>
+          </div>
+          <span class="item-price">7,50 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Daiquiri</p>
+            <p class="item-desc">Ron blanco, fresa o limón</p>
+          </div>
+          <span class="item-price">7,00 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🫓 Cachapas ESTRELLA -->
+    <section class="section section--star" id="cachapas">
+      <div class="section-header">
+        <span class="section-icon">🫓</span>
+        <h2 class="section-title">Cachapas</h2>
+        <span class="section-badge">★ Estrella</span>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Con Queso</p>
+            <p class="item-desc">Doble porción de queso de mano</p>
+          </div>
+          <span class="item-price">9,90 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Pabellón</p>
+            <p class="item-desc">Caraotas, carne, plátano, queso</p>
+          </div>
+          <span class="item-price">13,90 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Mechada</p>
+            <p class="item-desc">Carne mechada y queso</p>
+          </div>
+          <span class="item-price">11,90 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Reina Pepiada</p>
+            <p class="item-desc">Pollo, aguacate, queso</p>
+          </div>
+          <span class="item-price">11,90 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🌮 Quesadillas -->
+    <section class="section" id="quesadillas">
+      <div class="section-header">
+        <span class="section-icon">🌮</span>
+        <h2 class="section-title">Quesadillas</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Queso</p>
+            <p class="item-desc">Mozzarella derretida</p>
+          </div>
+          <span class="item-price">5,90 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Carne y Queso</p>
+            <p class="item-desc">Carne mechada, mozzarella</p>
+          </div>
+          <span class="item-price">7,20 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Pollo y Queso</p>
+            <p class="item-desc">Pollo mechado, mozzarella</p>
+          </div>
+          <span class="item-price">7,20 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🍟 Aperitivos -->
+    <section class="section" id="aperitivos">
+      <div class="section-header">
+        <span class="section-icon">🍟</span>
+        <h2 class="section-title">Aperitivos</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Tequeños de Queso</p>
+            <p class="item-desc">5 piezas de masa dorada</p>
+          </div>
+          <span class="item-price">6,40 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Bocados de Patacón</p>
+            <p class="item-desc">Copas de plátano con rellenos</p>
+          </div>
+          <span class="item-price">5,80 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Tapas</p>
+            <p class="item-desc">Ensaladilla rusa o almendras con salchicha</p>
+          </div>
+          <span class="item-price">5,00 €</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-gap"></div>
+
+    <!-- 🍮 Postres -->
+    <section class="section" id="postres">
+      <div class="section-header">
+        <span class="section-icon">🍮</span>
+        <h2 class="section-title">Postres</h2>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Crepe de Oreo</p>
+            <p class="item-desc">Sirope de Oreo, nata montada</p>
+          </div>
+          <span class="item-price">6,50 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Crepe de Pistacho</p>
+            <p class="item-desc">Nata y topping de pistacho</p>
+          </div>
+          <span class="item-price">7,00 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Waffle de Dulce de Leche</p>
+            <p class="item-desc">Dulce de leche, nata</p>
+          </div>
+          <span class="item-price">5,00 €</span>
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <p class="item-name">Waffle de Plátano</p>
+            <p class="item-desc">Plátano, Nutella, nata</p>
+          </div>
+          <span class="item-price">5,50 €</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nota arepas -->
+    <div class="nota">
+      <span class="nota-icon">🫔</span>
+      <p class="nota-text">¿Buscas arepas? Pregunta a nuestro equipo por nuestra carta de arepas del día.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-title">¿Quieres hacer un pedido<br>o reservar tu mesa?</p>
+      <a class="footer-wa" href="https://wa.me/34627579429?text=Hola,%20quisiera%20hacer%20un%20pedido" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Pedir por WhatsApp
+      </a>
+      <p class="footer-address">
+        C. Infanta Elena, 1, bajo 4 · 30500 Molina de Segura, Murcia<br>
+        Abierto todos los días desde las 10:00 h &nbsp;·&nbsp; ⭐ 5,0 Google
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 3.5l-6 6 1.4 1.4L8 6.3l4.6 4.6 1.4-1.4z"/>
+    </svg>
+  </button>
+
+  <script>
+    // ── Scroll to section ──────────────────────────
+    function scrollTo(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const tabs = document.querySelector('.tabs-wrap');
+      const offset = tabs ? tabs.offsetHeight + 8 : 8;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    // ── Active tab on scroll ───────────────────────
+    const sections = ['cafes','cervezas','frescas','cocteles','cachapas','quesadillas','aperitivos','postres'];
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabsWrap = document.querySelector('.tabs-wrap');
+
+    function updateActiveTab() {
+      const tabsH = tabsWrap ? tabsWrap.offsetHeight : 0;
+      let current = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= tabsH + 40) current = id;
+      }
+      tabBtns.forEach((btn, i) => {
+        const active = sections[i] === current;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', active);
+        if (active) {
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveTab, { passive: true });
+
+    // ── Scroll to top button ───────────────────────
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+  </script>
+</body>
+</html>

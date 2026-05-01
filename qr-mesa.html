@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Carta — Fusión Café Bar (Imprimir)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- QR Code library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --linen:  #eae0ca;
+      --bark:   #2c1405;
+      --bark2:  #4a2a10;
+      --moss:   #1e4d1a;
+      --terra:  #b85c3a;
+      --warm:   #d4821a;
+      --white:  #fdfaf4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #d0c8b8;
+      color: var(--bark);
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--bark2);
+      margin-bottom: 1.5rem;
+      opacity: .6;
+    }
+
+    /* ── GRID DE TARJETAS ─── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── TARJETA ─── */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(44,20,5,.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-top {
+      background: var(--bark);
+      width: 100%;
+      padding: .9rem .8rem .7rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .card-logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .card-logo svg {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+
+    .card-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .card-logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--linen);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .card-logo-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: .55rem;
+      font-style: italic;
+      color: var(--terra);
+      letter-spacing: .1em;
+    }
+
+    /* ── QR AREA ─── */
+    .qr-area {
+      padding: 1rem 1rem .6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      width: 100%;
+    }
+
+    .qr-wrap {
+      background: white;
+      padding: 8px;
+      border-radius: 8px;
+      border: 2px solid var(--linen);
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .qr-wrap canvas,
+    .qr-wrap img {
+      display: block;
+    }
+
+    .qr-cta {
+      font-family: 'Oswald', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--bark);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .qr-cta em {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--terra);
+      letter-spacing: .04em;
+      text-transform: none;
+      margin-top: .1rem;
+    }
+
+    /* ── FOOTER TARJETA ─── */
+    .card-footer {
+      width: 100%;
+      background: var(--linen);
+      padding: .5rem .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      border-top: 1px solid rgba(44,20,5,.08);
+    }
+
+    .card-footer-wa {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .6rem;
+      font-weight: 500;
+      color: #1a7a3f;
+    }
+
+    .card-footer-wa svg {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+
+    .card-footer-sep {
+      color: rgba(44,20,5,.25);
+      font-size: .6rem;
+    }
+
+    .card-footer-stars {
+      font-size: .58rem;
+      color: var(--warm);
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── CORTAR LINE ─── */
+    .cut-note {
+      text-align: center;
+      margin: 1.5rem auto .5rem;
+      font-size: .7rem;
+      color: rgba(44,20,5,.4);
+      letter-spacing: .08em;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+    }
+
+    .cut-note::before,
+    .cut-note::after {
+      content: '';
+      flex: 1;
+      max-width: 120px;
+      height: 1px;
+      border-top: 1px dashed rgba(44,20,5,.25);
+    }
+
+    /* ── PRINT ─── */
+    @media print {
+      body { background: white; padding: 0; }
+      h1 { display: none; }
+      .cut-note { display: none; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .8rem;
+        max-width: 100%;
+        page-break-inside: avoid;
+      }
+      .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+    }
+
+    @media (max-width: 400px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Imprimir · Recortar · Colocar en mesa</h1>
+
+  <div class="grid" id="grid">
+    <!-- Las tarjetas se generan con JS -->
+  </div>
+
+  <p class="cut-note">✂ Recorta por las líneas y coloca cada tarjeta en su mesa</p>
+
+  <script>
+    const URL_CARTA = 'https://fusioncafebar.es/carta';
+    const NUM_TARJETAS = 9; // 3x3 → una página A4 aprox.
+
+    const grid = document.getElementById('grid');
+
+    for (let i = 0; i < NUM_TARJETAS; i++) {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="card-logo">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="60" cy="60" r="58" fill="#b85c3a"/>
+              <circle cx="60" cy="60" r="58" fill="none" stroke="#3d1e0a" stroke-width="5"/>
+              <line x1="60" y1="88" x2="60" y2="52" stroke="#1e4d1a" stroke-width="5" stroke-linecap="round"/>
+              <ellipse cx="45" cy="76" rx="13" ry="6" fill="#1e4d1a" transform="rotate(-30 45 76)"/>
+              <ellipse cx="75" cy="76" rx="13" ry="6" fill="#1e4d1a" transform="rotate(30 75 76)"/>
+              <ellipse cx="42" cy="64" rx="13" ry="5.5" fill="#2d6a27" transform="rotate(-45 42 64)"/>
+              <ellipse cx="78" cy="64" rx="13" ry="5.5" fill="#2d6a27" transform="rotate(45 78 64)"/>
+              <ellipse cx="60" cy="50" rx="7" ry="15" fill="#1e4d1a"/>
+              <text x="60" y="104" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="#2c1405" letter-spacing="2">FUSION</text>
+            </svg>
+            <div class="card-logo-text">
+              <span class="card-logo-name">Fusión</span>
+              <span class="card-logo-sub">café bar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-area">
+          <div class="qr-wrap" id="qr-${i}"></div>
+          <div class="qr-cta">
+            Escanea para ver
+            <em>nuestra carta completa</em>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-wa">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            627 579 429
+          </span>
+          <span class="card-footer-sep">·</span>
+          <span class="card-footer-stars">⭐ 5,0 Google</span>
+        </div>
+      `;
+
+      grid.appendChild(card);
+
+      // Generar QR
+      new QRCode(document.getElementById(`qr-${i}`), {
+        text: URL_CARTA,
+        width: 130,
+        height: 130,
+        colorDark: '#2c1405',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+</body>
+</html>
